@@ -24,13 +24,14 @@ namespace DatabaseFirstEFCore.Controllers
             return View(await _context.Employees.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+
 
             var employee = await _context.Employees
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -53,7 +54,7 @@ namespace DatabaseFirstEFCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Designation,Salary")] Employee employee)
+        public async Task<IActionResult> Create(Employee employee)
         {
             if (ModelState.IsValid)
             {
